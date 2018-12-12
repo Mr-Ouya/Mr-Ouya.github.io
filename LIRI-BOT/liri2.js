@@ -8,130 +8,102 @@ var names=require("./test.js")
 var middlename = names.name.middle;
 console.log(middlename);
 var spotify = new Spotify(keys.spotify);
-
-
-
 var command = process.argv[2];
-var name = process.argv.slice(3).join(" ");
+var userInput = process.argv.slice(3).join(" ");
 
 
+switch(command){
+    
+    case 'concert-this':
+    Concert();
+    break;
+    case 'spotify-this-song':
+    Spotify();
+    break;
+    
+    
+    case 'do-what-it-says':
+    DoWhatItSays();
+    break;
+    case 'movie-this':
+    Movie();
+    break;
+}
 
-if (command === "concert-this") {
-    var url = ("https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp")
+function DoWhatItSays() {
+    //fs.readFile("random.txt", "utf8", function(error, data) 
+        console.log("DoWhatIsay");
+
+}
+function Concert(){
+    var url = ("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp")
 
     axios.get(url).then(response => {
 
-        console.log("Venue: " + response.data[1].venue.name)
-        console.log("City: " + response.data[1].venue.city)
-        console.log("Date of Concert: " + response.data[1].datetime)
+        console.log("Venue: " + response.data[0].venue.name)
+        console.log("City: " + response.data[0].venue.city)
+
+        console.log("Date: " + response.data[0].datetime)
 
 
     })
-
-
-
-} else if (command === "spotify-this-song") {
-   
-    spotify.search({
-        type: "track",
-        query: name,
-        limit: 1
-    }, function (err, data) {
-
-        if (err) {
-            return console.log(err)
-        }
-        console.log("Song name: " + data.tracks.items[0].name);
-        for (var i = 0; i < data.tracks.items[0].artists.length; i++) {
-            console.log("Artist name: " + data.tracks.items[0].artists[i].name);
-        }
-        console.log("Preview of song: " + data.tracks.items[0].preview_url);
-        console.log("Album name: " + data.tracks.items[0].album.name);
-
-    })
-    
-
-
-} else if (command === "movie-this") {
-
-    if (name === "") {
-
-        axios.get("http://www.omdbapi.com/?t=" + "Mr.Nobody" + "&apikey=799e27df").then(response => {
-
-            console.log("Title of movie: " + response.data.title);
-            console.log("When it has released: " + response.data.Released);
-            console.log("IMDB rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes rating: " + response.data.Ratings[1].Source);
-            console.log("Where it was produced: " + response.data.Country);
-            console.log("Original language: " + response.data.Language);
-            console.log("Plot of movie: " + response.data.Plot);
-            console.log("Acters: " + response.data.Actors);
-
-
-        }).catch(error => {
-            console.log(error);
-        });
-
-    } else {
-        axios.get("http://www.omdbapi.com/?t=" + name + "&apikey=799e27df").then(response => {
-
-            console.log("Title of movie: " + response.data.title);
-            console.log("When it has released: " + response.data.Released);
-            console.log("IMDB rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes rating: " + response.data.Ratings[1].Source);
-            console.log("Where it was produced: " + response.data.Country);
-            console.log("Original language: " + response.data.Language);
-            console.log("Plot of movie: " + response.data.Plot);
-            console.log("Acters: " + response.data.Actors);
-
-        }).catch(error => {
-            if (error.response)
-                console.log(error.data);
-        });
-
-
-    }
-
-
-
-} else if (command === "do-what-it-says") {
-
-
-    fs.readFile("random.txt", "utf8", function (err, txt) {
-
-        //var txt = data.split(",");
-        var txts = txt.split(",");
-        //  var txtx = txt.split(",");
-        if (err) {
-
-            console.log(err);
-
-        }
-
-        {
-            spotify.search({
-                type: "track",
-                query: txts[1],
-                limit: 3
-            }, function (err, data) {
-
-                if (err) {
-                    return console.log(err)
-                }
-
-                console.log("Song name: " + data.tracks.items[0].name);
-                for (var i = 0; i < data.tracks.items[0].artists.length; i++) {
-                    console.log("Artist name: " + data.tracks.items[0].artists[i].name)
-                };
-                console.log("Preview of song: " + data.tracks.items[0].preview_url);
-                console.log("Album name: " + data.tracks.items[0].album.name);
-            })
-
-        }
-
-
-
-    })
-
-
 }
+
+
+function Spotify() {
+    spotify.search({ type: 'track', query: userInput,limit:1 }, function(err, data) {
+        if (err) {
+      
+          return console.log('Error occurred: ' + err);
+        };
+        if(data.tracks.total===0){
+            userInput="The Sign%20artist:Ace of Base";
+            SpotifyThisSong();
+            return;
+        }
+      var Artists=data.tracks.items[0].artists[0].name;
+      var TrackName=data.tracks.items[0].name;
+      var PreviewURL=data.tracks.items[0].preview_url;
+      var Album=data.tracks.items[0].album.name;
+      console.log("Artists: "+ Artists); 
+      console.log("Track Name: "+ TrackName); 
+      console.log("Preview Link: "+ PreviewURL);
+      console.log("Album: "+ Album);
+      });
+      };
+
+      
+      function Movie() {
+        if(userInput===""){
+            userInput= 'Mr. Nobody.';
+        } else 
+        //var url =("http://www.omdbapi.com/?i=tt3896198&apikey=da9e377b" + userInput)
+        axios.get("http://www.omdbapi.com/?t=" + userInput + "&apikey=da9e377b").then(function(response){
+        var Title=response.data.Title;
+        
+        var Year=response.data.Year;
+        var IMDBRating=response.data.Ratings[0].Value;
+        var RottenTomatoesRating=response.data.Ratings[1].Value;
+        var Country=response.data.Country;
+        var Language=response.data.Language;
+        var Plot=response.data.Plot;
+        var Actors=response.data.Actors;
+
+        
+        console.log("Title: "+ Title);
+        console.log("Year: "+ Year);
+        console.log("IMDB Rating: "+ IMDBRating);
+        console.log("Rotten Tomatoes Rating: "+ RottenTomatoesRating);
+        console.log("Country: "+ Country);
+        console.log("Language: "+ Language);
+        console.log("Plot: "+ Plot);
+        console.log("Actors: "+ Actors);
+        });
+        };
+    
+     
+
+
+
+
+

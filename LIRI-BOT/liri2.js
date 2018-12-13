@@ -40,18 +40,26 @@ function Concert(){
 
     axios.get(url).then(response => {
 
-        console.log("Venue: " + response.data[0].venue.name)
+        /* Need .catch? To function with a artist who has 0 shows
+            if (response.data.venue.name === undefined) {
+                console.log("No show dates");
+            } else {}
+        */
+            console.log("Venue: " + response.data[0].venue.name)
         console.log("City: " + response.data[0].venue.city)
 
         console.log("Date: " + response.data[0].datetime)
 
-
+            
     })
 }
 
 
 function Spotify() {
     spotify.search({ type: 'track', query: userInput,limit:1 }, function(err, data) {
+        
+        
+        
         if (err) {
       
           return console.log('Error occurred: ' + err);
@@ -82,8 +90,8 @@ function Spotify() {
         var Title=response.data.Title;
         
         var Year=response.data.Year;
-        var IMDBRating=response.data.Ratings[0].Value;
-        var RottenTomatoesRating=response.data.Ratings[1].Value;
+        var IMDB=response.data.Ratings[0].Value;
+        var RottenTomatoesRating=response.data.Ratings[0].Value;
         var Country=response.data.Country;
         var Language=response.data.Language;
         var Plot=response.data.Plot;
@@ -92,7 +100,7 @@ function Spotify() {
         
         console.log("Title: "+ Title);
         console.log("Year: "+ Year);
-        console.log("IMDB Rating: "+ IMDBRating);
+        console.log("IMDB Rating: "+ IMDB);
         console.log("Rotten Tomatoes Rating: "+ RottenTomatoesRating);
         console.log("Country: "+ Country);
         console.log("Language: "+ Language);

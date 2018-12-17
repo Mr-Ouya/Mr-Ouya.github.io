@@ -1,24 +1,24 @@
 require("dotenv").config();
 var axios = require("axios");
 var Spotify = require('node-spotify-api');
-var fs = require("fs")
+var fs = require("fs");
 
-var keys = require("./keys.js")
-var names=require("./test.js")
+var keys = require("./keys.js");
+var names=require("./test.js");
 var middlename = names.name.middle;
 console.log(middlename);
 var spotify = new Spotify(keys.spotify);
 var command = process.argv[2];
 var userInput = process.argv.slice(3).join(" ");
 
-
+ 
 switch(command){
     
     case 'concert-this':
     Concert();
     break;
     case 'spotify-this-song':
-    Spotify();
+    SpotifySong();
     break;
     
     
@@ -55,20 +55,26 @@ function Concert(){
 }
 
 
-function Spotify() {
-    spotify.search({ type: 'track', query: userInput,limit:1 }, function(err, data) {
+
+function SpotifySong() {
+    spotify.search({ type: 'track', query: userInput,limit:1, }, function(err, data) {
         
         
         
         if (err) {
-      
-          return console.log('Error occurred: ' + err);
+            console.log('Error occurred: ' + err);
+          return 
         };
+        
+        
         if(data.tracks.total===0){
             userInput="The Sign%20artist:Ace of Base";
             SpotifyThisSong();
             return;
-        }
+        };
+        
+
+
       var Artists=data.tracks.items[0].artists[0].name;
       var TrackName=data.tracks.items[0].name;
       var PreviewURL=data.tracks.items[0].preview_url;

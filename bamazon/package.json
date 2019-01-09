@@ -1,0 +1,16 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazonCustomers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick B",
+  "license": "MIT",
+  "dependencies": {
+    "columnify": "^1.5.4",
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
+  }
+}

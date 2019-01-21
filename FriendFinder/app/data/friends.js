@@ -6,7 +6,9 @@
 // [1, 2, 0 ] = 3
 
 //finalArray[3, 4, 3, 2, 1, 5] = 4th index
-friendsArray[4th].name
+//friendsArray[4th].name
+
+
 
 
 var friendsArray = [

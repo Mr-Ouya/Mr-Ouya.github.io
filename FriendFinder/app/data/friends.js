@@ -1,12 +1,5 @@
 
-// newFriend = [ 2, 1, 4]
-// allFriends = [   [5, 1, 4], [1, 1, 1], [3, 3, 4]    ]
-// [3, 0, 0 ] = 3
-// [1, 0, 3 ] 4
-// [1, 2, 0 ] = 3
 
-//finalArray[3, 4, 3, 2, 1, 5] = 4th index
-//friendsArray[4th].name
 
 
 
@@ -62,9 +55,20 @@ var friendsArray = [
       }
   ];
   
+  // newFriend = [ 2, 1, 4]
+// allFriends = [   [5, 1, 4], [1, 1, 1], [3, 3, 4]    ]
+// [3, 0, 0 ] = 3
+// [1, 0, 3 ] 4
+// [1, 2, 0 ] = 3
+
+//finalArray[3, 4, 3, 2, 1, 5] = 4th index
+//friendsArray[4th].name
   var addFriend = function(app) {
     app.post('/api/friends', function(req, res) {
-        console.log(req.body);
+        //console.log(req.body);
+        var fInput = req.body;
+        var allInput = userInput.scores;
+        console.log(allInput);
     }
     )
   }

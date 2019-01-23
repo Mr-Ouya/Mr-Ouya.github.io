@@ -16,16 +16,15 @@ app.post('/api/friends', function(req, res) {
 
     var userResponses = userInput.scores;
 
-    // console.log('userResponses = ' + userResponses);
+   
 
    
-    var matchName = '';
+    var findName = '';
+    
     var matchImage = '';
     var totalDifference = 10000; 
     for (var i = 0; i < friends.length; i++) {
-        // console.log('friend = ' + JSON.stringify(friends[i]));
-
-        // Compute differenes for each question
+      
         var diff = 0;
         for (var j = 0; j < userResponses.length; j++) {
             diff += Math.abs(friends[i].scores[j] - userResponses[j]);
@@ -35,7 +34,7 @@ app.post('/api/friends', function(req, res) {
             
 
             totalDifference = diff;
-            matchName = friends[i].name;
+            findName = friends[i].name;
             matchImage = friends[i].photo;
         }
     }
@@ -43,6 +42,6 @@ app.post('/api/friends', function(req, res) {
     friends.push(userInput);
 
    
-    res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+    res.json({status: 'OK', findName: matchName, matchImage: matchImage});
 });
-*/
+

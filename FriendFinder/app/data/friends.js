@@ -6,8 +6,8 @@
 
 var friendsArray = [
     {
-        "name":"Ahmed",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "name":"Bald Bull",
+        "photo":"https://res.cloudinary.com/teepublic/image/private/s--yvwwAgj5--/t_Preview/b_rgb:36538b,c_limit,f_jpg,h_630,q_90,w_630/v1480595419/production/designs/890336_1.jpg",
         "scores":[
             5,
             1,
@@ -22,8 +22,8 @@ var friendsArray = [
           ]
       },
       {
-        "name":"Fred",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "name":"King Hippo",
+        "photo":"https://cdn.shopify.com/s/files/1/0772/5623/products/king_hippo_grande.jpg?v=1483558316",
         "scores":[
             1,
             1,
@@ -38,8 +38,8 @@ var friendsArray = [
           ]
       },
       {
-        "name":"Louis",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "name":"Glass Joe",
+        "photo":"https://s.yimg.com/uu/api/res/1.2/lZZqBELZwaofkGY50M6Ssw--~B/aD00MTM7dz0zMTA7c209MTthcHBpZD15dGFjaHlvbg--/http://media.zenfs.com/en/blogs/sptusmlbexperts/glassjoe060413.jpg",
         "scores":[
             3,
             3,
@@ -63,7 +63,7 @@ var friendsArray = [
 
 //finalArray[3, 4, 3, 2, 1, 5] = 4th index
 //friendsArray[4th].name
-  var addFriend = function(app) {
+/*  var addFriend = function(app) {
     app.post('/api/friends', function(req, res) {
         //console.log(req.body);
         var fInput = req.body;
@@ -72,12 +72,12 @@ var friendsArray = [
     }
     )
   }
-
-  var friendMatch = function() {
+*/
+  //var friendMatch = function() {}
       //res.json for match
-  }
+  
 
 
   // Note how we export the array. This makes it accessible to other files using require.
-  module.exports.friendsArray = friendsArray;
-  module.exports.addFriend = addFriend;
+  module.exports = friendsArray;
+  //module.exports.addFriend = addFriend;

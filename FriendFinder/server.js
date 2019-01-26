@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 
 require("./routing/apiRoutes")(app);
 require("./routing/htmlRoutes")(app);
-friends.addFriend(app);
+//friends.addFriend(app);
 // =============================================================================
 // LISTENER
 // The below code effectively "starts" our server

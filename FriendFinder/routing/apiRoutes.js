@@ -1,3 +1,5 @@
+var path = require('path');
+
 var friendsData = require("../app/data/friends");
 
 
@@ -7,7 +9,7 @@ module.exports = function(app) {
     app.get("/api/friends", function(req, res) {
     res.json(friendsData);
     });
-}
+
 
 app.post('/api/friends', function(req, res) {
     // Capture the user input object
@@ -19,29 +21,30 @@ app.post('/api/friends', function(req, res) {
    
 
    
-    var findName = '';
+    var matchName = '';
     
     var matchImage = '';
     var totalDifference = 10000; 
-    for (var i = 0; i < friends.length; i++) {
+    for (var i = 0; i < friendsData.length; i++) {
       
-        var diff = 0;
+        var eachDifference = 0;
         for (var j = 0; j < userResponses.length; j++) {
-            diff += Math.abs(friends[i].scores[j] - userResponses[j]);
+            eachDifference += Math.abs(friendsData[i].scores[j] - userResponses[j]);
         }
         
-        if (diff < totalDifference) {
+        if (eachDifference < totalDifference) {
             
 
-            totalDifference = diff;
-            findName = friends[i].name;
-            matchImage = friends[i].photo;
+            totalDifference = eachDifference;
+            findName = friendsData[i].name;
+            matchImage = friendsData[i].photo;
         }
     }
 
-    friends.push(userInput);
+    friendsData.push(userInput);
 
    
     res.json({status: 'OK', findName: matchName, matchImage: matchImage});
 });
 
+};

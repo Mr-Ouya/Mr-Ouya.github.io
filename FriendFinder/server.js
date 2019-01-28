@@ -1,7 +1,7 @@
 
 var express = require("express");
-var bodyParser = require('body-parser')
-var friends = require('./app/data/friends.js')
+
+var path = require('path');
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -18,18 +18,19 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(bodyParser.json())
 // ================================================================================
 // ROUTER
 // The below points our server to a series of "route" files.
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
-
+/* troubleshooting
 require("./routing/apiRoutes")(app);
 require("./routing/htmlRoutes")(app);
+*/
+// Add the application routes
+require(path.join(__dirname, './routing/apiRoutes'))(app);
+require(path.join(__dirname, './routing/htmlRoutes'))(app);
+
 //friends.addFriend(app);
 // =============================================================================
 // LISTENER

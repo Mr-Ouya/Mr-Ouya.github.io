@@ -1,16 +1,18 @@
+
 var connection = require("../config/connection.js");
 
 var orm = {
 
 
     selectAll: function (table, cb) {
-//get all info from entire table
+
         var queryString = "SELECT * FROM " + table + ";";
-//query table
+
         connection.query(queryString, function (err, result) {
-//if error, throw. Else get results
+
             if (err) {
-                throw err;
+
+            throw (err);
 
             }
             cb(result);
@@ -26,6 +28,7 @@ var orm = {
         queryString += "Values ("
         queryString += "?";
         queryString += ") "
+        
         connection.query(queryString, function (err, result) {
 
             if (err) throw err;
@@ -34,12 +37,13 @@ var orm = {
         })
     },
 
-    updateOne: function (table, objColValue, condition, cb) {
+
+    updateOne: function (table, col, condition, cb) {
 
         var queryString = "UPDATE" + table;
 
         queryString += " SET ";
-        queryString += objColValue;
+        queryString += col;
         queryString += " WHERE ";
         queryString += condition;
 

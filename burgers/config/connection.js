@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "root",
-    database: "burgers_db"
+    database: "burger_base"
 
 
 });
@@ -14,10 +14,12 @@ connection.connect(function (err) {
 
     if (err) {
 
-        console.log(err)
+        throw(err)
+
+
     } else {
 
-        console.log(connection.threadId);
+        console.log("Listening on Port " + port);
     }
 
 

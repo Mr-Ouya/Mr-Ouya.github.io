@@ -1,26 +1,30 @@
 var orm = require("../config/orm.js")
+var path = require("fs")
 var burger = {
 
-    all: function (cb) {
+    all: function (call) {
         orm.selectAll("burgers", function (res) {
-            cb(res);
+           
+            cb(call);
         })
     },
 
 
 
-    create: function (cols, val, cb) {
+
+    create: function (cols, val, call) {
         orm.insertOne("burgers", cols, val, function (res) {
             cb(res);
         })
     },
 
-    update: function (burger, condition, cd) {
+
+    update: function (burger, condition, call) {
 
         orm.updateOne("burgers", condition, function (res) {
-            cb(res)
+            call(res)
         })
     }
 };
-//export burger functin
+
 module.exports = burger;

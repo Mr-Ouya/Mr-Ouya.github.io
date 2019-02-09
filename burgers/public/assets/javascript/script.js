@@ -17,5 +17,6 @@ $(function () {
                 console.log("Burger up!")
                 location.reload;
             })
-        }
-    })
+        })
+    }
+)

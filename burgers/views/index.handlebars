@@ -1,15 +1,16 @@
 
 
+
 <h1>Order stuff here</h1>
 <div class = "row">
 
     {{#each burgers}}
     {{burger_name}}
-    <button button class="eat" data-id="{{id}}" data-devoure="{{devoure}}"></button>
+    <button button class="eat" data-id="{{id}}" data-eat=""="{{eat}}"></button>
     {{/each}}
 
 </div>
-<h2>burgers Devored</h2>
+<h2>burgers Eaten</h2>
 <ul>
     {{#each burgers}}
     {{/each}}
@@ -18,11 +19,14 @@
 
 
 <h2>Add Burger</h2>
+
 <div class = "row">
+
 <form class="form">
 
     <div class="form-group">
-        <label for="burger">Devour Burger</label>
+        <label for="burger"> Burger</label>
+
         <input type="text" id="burgerT" name="burger">
     </div>
     <button type="submit">What cha want boi?</button>
